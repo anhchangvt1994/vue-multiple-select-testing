@@ -1,0 +1,68 @@
+{
+	"name": "vite-project-vue",
+	"private": true,
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "cross-env MODE=development vite",
+		"build": "npx vue-tsc && cross-env MODE=production vite build",
+		"build:esm": "npx vue-tsc && cross-env MODE=production ESM=true vite build",
+		"preview": "vite preview",
+		"prettier": "npx vue-tsc && prettier src/**/*.{vue,js,ts}{,x} --no-error-on-unmatched-pattern --check",
+		"lint": "npx vue-tsc && eslint src/**/*.{vue,js,ts}{,x} --no-error-on-unmatched-pattern --ignore-pattern node_modules/",
+		"lint:fix": "npm run lint -- --fix",
+		"prettier:fix": "npm run prettier -- --write",
+		"format": "npm run prettier:fix && npm run lint:fix",
+		"prepare": "git config core.autocrlf false && npx husky install",
+		"pre-commit": "npx vue-tsc && lint-staged"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	],
+	"dependencies": {
+		"vue": "^3.3.4"
+	},
+	"devDependencies": {
+		"commit-packages": "file:./config/commit-packages",
+		"lint-and-format-packages": "file:./config/lint-and-format-packages",
+		"build-tool-packages": "file:./config/build-tool-packages"
+	},
+	"eslintConfig": {
+		"extends": [
+			"./config/eslint.config.cjs"
+		]
+	},
+	"prettier": "./config/prettier.config.cjs",
+	"lint-staged": {
+		"*.{vue,js,jsx,ts,tsx}": "npm run prettier:fix && npm run lint"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		],
+		"rules": {
+			"type-enum": [
+				2,
+				"always",
+				[
+					"feat",
+					"style",
+					"test",
+					"fix",
+					"docs",
+					"release",
+					"update",
+					"perf",
+					"chore"
+				]
+			]
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "cz-git",
+			"czConfig": "./config/cz.config.cjs"
+		}
+	}
+}
