@@ -22,7 +22,7 @@ dist-ssr
 *.sw?
 
 .cache
-package-lock.json
+# package-lock.json
 yarn.lock
 config/env/.env
 config/env/env.json
