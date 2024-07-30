@@ -76,27 +76,24 @@
 	<div>
 		<form @submit="onSubmit">
 			<div v-for="staff in dataFormattedState" :key="staff.id" class="mb-16">
-				<div class="mb-8 cursor-pointer" @click="staff.isShow = !staff.isShow">
-					<label
-						:key="staff.id"
-						:for="staff.name"
-						class="inline-flex gap-8"
-						@click="
-							($event) => {
-								$event.stopPropagation()
-							}
-						"
-					>
-						<input :id="staff.name" type="checkbox" v-model="staff.checked" />
-						<span>{{ staff.name }} {{ staff.isShow ? '-' : '+' }}</span>
-					</label>
+				<div
+					class="flex gap-8 mb-8 cursor-pointer select-none"
+					@click="staff.isShow = !staff.isShow"
+				>
+					<input
+						:id="staff.name"
+						type="checkbox"
+						v-model="staff.checked"
+						@click="($event) => $event.stopPropagation()"
+					/>
+					<span>{{ staff.name }} {{ staff.isShow ? '-' : '+' }}</span>
 				</div>
-				<div class="flex gap-16 cursor-pointer" v-if="staff.isShow">
+				<div class="flex gap-16 select-none" v-if="staff.isShow">
 					<label
 						v-for="user in staff.users"
 						:key="user.id"
 						:for="user.name"
-						class="inline-flex gap-8"
+						class="inline-flex gap-8 cursor-pointer"
 					>
 						<input :id="user.name" type="checkbox" v-model="user.checked" />
 						<span>{{ user.name }}</span>
