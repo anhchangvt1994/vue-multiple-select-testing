@@ -83,6 +83,7 @@
 					<input
 						:id="staff.name"
 						type="checkbox"
+						style="transform: scale(1.5)"
 						v-model="staff.checked"
 						@click="($event) => $event.stopPropagation()"
 					/>
@@ -95,7 +96,12 @@
 						:for="user.name"
 						class="inline-flex gap-8 cursor-pointer"
 					>
-						<input :id="user.name" type="checkbox" v-model="user.checked" />
+						<input
+							:id="user.name"
+							type="checkbox"
+							style="transform: scale(1.5)"
+							v-model="user.checked"
+						/>
 						<span>{{ user.name }}</span>
 					</label>
 				</div>
