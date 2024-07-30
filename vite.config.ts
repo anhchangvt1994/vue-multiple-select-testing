@@ -33,6 +33,7 @@ export default defineConfig(async ({ mode }) => {
 	const aliasExternal = ViteConfigWithMode?.aliasExternal ?? {}
 
 	return {
+		base: 'https://raw.githubusercontent.com/anhchangvt1994/vue-multiple-select-demo/main',
 		publicDir: 'src/assets/static',
 		plugins: [
 			vue({
